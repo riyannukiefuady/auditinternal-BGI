@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: audit-borneo
+    runtime: node
+    plan: starter
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /healthz
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: HOST
+        value: 0.0.0.0
+      - key: TZ
+        value: Asia/Jakarta
+      - key: DATA_DIR
+        value: /var/data
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: JAM_KIRIM
+        value: "7"
+    disk:
+      name: audit-borneo-data
+      mountPath: /var/data
+      sizeGB: 1
